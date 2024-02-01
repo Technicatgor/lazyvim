@@ -5,12 +5,10 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
+keymap.set({ "n", "v" }, "<leader>]", ":Gen<CR>")
 -- Increment / decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
-
--- Delete a word backwrds
-keymap.set("n", "dw", "vb_d")
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
