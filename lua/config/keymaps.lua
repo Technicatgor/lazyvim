@@ -4,7 +4,14 @@
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local builtin = require("telescope.builtin")
 
+-- telescope keymap
+keymap.set("n", "<leader>ff", builtin.find_files, {})
+keymap.set("n", "<leader>fg", builtin.live_grep, {})
+keymap.set("n", "<leader>fb", builtin.buffers, {})
+
+-- Gen.nvim calling ollama
 keymap.set({ "n", "v" }, "<leader>]", ":Gen<CR>")
 -- Increment / decrement
 keymap.set("n", "+", "<C-a>")
@@ -14,7 +21,7 @@ keymap.set("n", "-", "<C-x>")
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Swap to normal mode
-keymap.set("i", "jj", "<C-c>")
+keymap.set("i", "jj", "<C-c>", opts)
 
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)

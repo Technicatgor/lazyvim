@@ -6,6 +6,8 @@ return {
     opts = {
       ensure_installed = {
         "astro",
+        "comment",
+        "lua",
         "cmake",
         "cpp",
         "css",
@@ -14,12 +16,17 @@ return {
         "go",
         "graphql",
         "http",
+        "html",
         "java",
+        "json",
         "php",
         "rust",
         "scss",
         "sql",
         "svelte",
+        "vue",
+        "yaml",
+        "markdown",
       },
 
       -- matchup = {
@@ -49,6 +56,23 @@ return {
           update = "R",
           goto_node = "<cr>",
           show_help = "?",
+        },
+      },
+    },
+    dependencies = {
+      {
+        "windwp/nvim-ts-autotag",
+        opts = {
+          enable_close_on_slash = false,
+          filetype = {
+            "html",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "xml",
+          },
         },
       },
     },
