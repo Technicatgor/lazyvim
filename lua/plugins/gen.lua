@@ -7,6 +7,8 @@ return {
     display_mode = "float", -- The display mode. Can be "float" or "split".
     show_prompt = false, -- Shows the Prompt submitted to Ollama.
     show_model = false, -- Displays which model you are using at the beginning of your chat session.
+    retry_map = "<c-r>", -- set keymap to re-send the current prompt
+    accept_map = "<c-cr>", -- set keymap to replace the previous selection with the last result
     quit_map = "q", -- set keymap for quit
     no_auto_close = false, -- Never closes the window automatically.
     init = function(options)
@@ -14,6 +16,7 @@ return {
     end,
     -- Function to initialize Ollama
     command = function(options)
+      local body = { model = options.model, stream = true }
       return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d $body"
     end,
     -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
@@ -22,5 +25,9 @@ return {
     -- (context property is optional).
     -- list_models = '<omitted lua function>', -- Retrieves a list of model names
     debug = false, -- Prints errors and the command which is run.
+    file = false, -- Write the payload to a temporary file to keep the command short.
+    hidden = false, -- Hide the generation window (if true, will implicitly set `prompt.replace = true`), requires Neovim >= 0.10
+    -- Function to initialize Ollama
+    result_filetype = "markdown", -- Configure filetype of the result buffer
   },
 }
